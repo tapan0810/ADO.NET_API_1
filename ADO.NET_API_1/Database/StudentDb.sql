@@ -3,15 +3,16 @@ GO
 
 USE StudentDb;
 GO
+DROP TABLE IF EXISTS Students;
 
 CREATE TABLE Students
 (
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    FirstName NVARCHAR(100) NOT NULL,
-    LastName NVARCHAR(100) NOT NULL,
-    Email NVARCHAR(255) NOT NULL UNIQUE,
-    Age INT NOT NULL,
-    Department NVARCHAR(100) NOT NULL
+    FirstName NVARCHAR(100),
+    LastName NVARCHAR(100),
+    Email NVARCHAR(255),
+    Age INT,
+    Department NVARCHAR(100)
 );
 GO
 
