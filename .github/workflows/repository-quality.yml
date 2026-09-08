@@ -1,0 +1,14 @@
+name: Repository Quality
+on: [push, pull_request]
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with: { dotnet-version: '9.0.x' }
+      - name: Build and test
+        shell: bash
+        run: |
+          for project in $(find . -name '*.csproj' -not -path '*/obj/*' -not -path '*/bin/*'); do dotnet build "$project" -c Release; done
+          for test in $(find . -name '*Tests.csproj' -o -name '*.Tests.csproj'); do dotnet test "$test" -c Release; done
